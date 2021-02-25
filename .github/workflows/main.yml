@@ -32,5 +32,4 @@ jobs:
     
       - name: Pull repository
         run: |
-          ls
-          run-in-docker serge pull --initialize stereotech.org.serge
+          ./run-in-docker serge pull --initialize stereotech.org.serge
