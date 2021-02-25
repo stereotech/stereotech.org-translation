@@ -1,0 +1,38 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+jobs:
+  buildTranslations:
+    runs-on: ubuntu-latest
+    env:
+      ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+      API_TOKEN: ${{ secrets.API_TOKEN }}
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get docker image
+        run: docker pull smartcatcom/serge:latest
+        
+      - name: Pull repository
+        run: ./run-in-docker serge pull --initialize stereotech.org.serge
+
+      - name: Apply localization
+        run: ./run-in-docker serge pull-ts localize
+        
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3.8.2
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          path: vcs/stereotech.org
+          commit-message: '[Automated] Update translation'
+          branch: update/translations
+          delete-branch: true
+          title: '[Automated] Update translation'
+          
