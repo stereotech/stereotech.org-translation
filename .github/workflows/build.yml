@@ -20,9 +20,13 @@ jobs:
       - name: Get docker image
         run: docker pull smartcatcom/serge:latest
         
-      - name: Pull repository
-        run: ./run-in-docker serge pull --initialize stereotech.org.serge
-
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+        with:
+          repository: stereotech/stereotech.org
+          token: ${{ secrets.PAT_TOKEN }}
+          path: vcs/stereotech.org
+          
       - name: Pull localization
         run: ./run-in-docker serge localize
         
