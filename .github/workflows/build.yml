@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Build Translations
 on:
   push:
     branches: [ master ]
@@ -23,8 +23,11 @@ jobs:
       - name: Pull repository
         run: ./run-in-docker serge pull --initialize stereotech.org.serge
 
-      - name: Apply localization
-        run: ./run-in-docker serge pull-ts localize
+      - name: Pull localization
+        run: ./run-in-docker serge pull-ts
+        
+      - name: Localize
+        run: ./run-in-docker serge localize
         
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.8.2
