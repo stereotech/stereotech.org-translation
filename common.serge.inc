@@ -62,7 +62,7 @@ common-settings
         In that case it is recommended to split databases for each
         source language.
         */
-        db_source                               DBI:SQLite:dbname=../db/translate.db3
+        db_source                               DBI:SQLite:dbname=./db/translate.db3
 
         /*
         Source language must be recognized by Smartcat.

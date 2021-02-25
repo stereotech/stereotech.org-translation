@@ -21,7 +21,7 @@ sync
 
         data
         {
-            local_path                          ../vcs/stereotech.org
+            local_path                          ./vcs/stereotech.org
             remote_path                         https://github.com/stereotech/stereotech.org.git
         }
     }
@@ -43,13 +43,13 @@ jobs
         source_language                         ru
         destination_languages                   en de
 
-        source_dir                              ../vcs/stereotech.org/locales
+        source_dir                              ./vcs/stereotech.org/locales
         source_match                            ru.json
         source_process_subdirs                  YES
 
-        output_file_path                        ../vcs/stereotech.org/locales/%LANG%.json
+        output_file_path                        ./vcs/stereotech.org/locales/%LANG%.json
 
-        ts_file_path                            ../ts/stereotech.org/%LANG%/%FILE%.po
+        ts_file_path                            ./ts/stereotech.org/%LANG%/%FILE%.po
 
         parser
         {
