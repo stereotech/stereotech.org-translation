@@ -24,7 +24,7 @@ common-settings
             your `Settings > API` page once you sign into
             your Smartcat account.
             */
-            account_id                          12345678-abcd-9876-5432-abcdef012345
+            account_id                          %ENV:ACCOUNT_ID%
 
             /*
             Go to `Settings > API` page in your account,
@@ -32,7 +32,7 @@ common-settings
             e.g. 'Serge', and the auto-generated secret part
             of the key is what needs to be added here.
             */
-            token                               1_AaBbCcDdEeFfGgHhIiJjKkLlM
+            token                               %ENV:API_TOKEN%
 
             /*
             [OPTIONAL] Enable debug mode if requested by Smartcat support.
@@ -49,8 +49,8 @@ common-settings
         {
             add_unversioned                     YES
             clone_params                        --depth 1
-            email                               l10n@mycompany.com
-            name                                L10N Robot
+            email                               dev@5dtech.pro
+            name                                Stereotech Dev
         }
     }
 

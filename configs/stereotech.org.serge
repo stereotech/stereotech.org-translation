@@ -11,7 +11,7 @@ sync
             # For example, if the URL is
             # https://us.smartcat.ai/projects/01234567-890a-bcde-f012-34567890abcd/files?documentPage=1
             # then the ID will be 01234567-890a-bcde-f012-34567890abcd
-            project_id                          01234567-890a-bcde-f012-34567890abcd
+            project_id                          %ENV:PROJECT_ID%
         }
     }
 
@@ -21,8 +21,8 @@ sync
 
         data
         {
-            local_path                          ../vcs/project-a
-            remote_path                         ssh://username@git-server.local/project-a.git
+            local_path                          ../vcs/stereotech.org
+            remote_path                         https://github.com/stereotech/stereotech.org.git
         }
     }
 }
@@ -32,27 +32,28 @@ jobs
     {
         @inherit                                common.serge.inc#common-settings/job
 
-        name                                    Localize JavaScript files for project 'project-a'
-        id                                      project-a.js
-        db_namespace                            project-a
+        name                                    Localize JSON files
+        id                                      stereotech.org.json
+        db_namespace                            stereotech.org
 
         /*
         Destination (target) languages must be recognized by Smartcat.
         See https://smartcat.ai/Home/Languages
         */
-        destination_languages                   de ru
+        source_language                         ru
+        destination_languages                   en de
 
-        source_dir                              ../vcs/project-a/en
-        source_match                            \.js$
+        source_dir                              ../vcs/stereotech.org/locales
+        source_match                            ru.json
         source_process_subdirs                  YES
 
-        output_file_path                        ../vcs/project-a/%LANG%/%FILE%
+        output_file_path                        ../vcs/stereotech.org/locales/%LANG%.json
 
-        ts_file_path                            ../ts/project-a/%LANG%/%FILE%.po
+        ts_file_path                            ../ts/stereotech.org/%LANG%/%FILE%.po
 
         parser
         {
-            plugin                              parse_js
+            plugin                              parse_json_keyvalue
         }
     }
 }

@@ -6,3 +6,4 @@ db
 log
 ts
 vcs
+.env
