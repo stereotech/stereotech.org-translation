@@ -7,6 +7,9 @@ docker run \
     --rm \
     -v "$DIR:/data" \
     -v "$DIR/.ssh:/tmp/.ssh" \
+    --env ACCOUNT_ID=$ACCOUNT_ID \
+    --env API_TOKEN=$API_TOKEN \
+    --env PROJECT_ID=$PROJECT_ID \
     --entrypoint boot/run-in-docker.sh \
     smartcatcom/serge \
     "$@"
